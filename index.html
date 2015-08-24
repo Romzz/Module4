@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang = "en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<title>New Thesis Entry</title>
+	
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<script>
+			$('#thesis-form').submit(function() { 
+			// submit the form 
+			alert("Hello World!");
+			$(this).ajaxSubmit(); 
+			// return false to prevent normal browser submit and page navigation 
+			return false; 
+			});
+		</script>
+	</head>
+
+	<body>
+		<div class = "container">
+			<div class = "row main">
+				<div class="col-sm-2">&nbsp;</div>
+				<div class="col-sm-3">  <!-- FORM -->
+					<form role="form"  class="thesis-form" name="thesis-form" id="thesis-form" method="post"> 
+						<br /><br />
+						<div class="form-group">
+							<label for="year">Year:</label>
+							<input type="text" class="form-control"  name="year"  id="year"  placeholder="Year"  required  autofocus>
+						</div>
+						<div class="form-group">
+							<label for="title">Title:</label>
+							<input type="text" class="form-control"  name="title"  id="title"  placeholder="Title"  required  autofocus>
+						</div>
+						<div class="form-group">
+							<label for="abstract">Abstract:</label>
+							<textarea class="form-control" name="abstract" id="abstract" placeholder="Abstract" required autofocus></textarea>
+						</div>
+						<div class="form-group">
+							<label for="adviser">Adviser:</label>
+							<input type="text" class="form-control" name="adviser"  id="adviser"  placeholder="Adviser"  required  autofocus>
+						</div>
+						<button type="submit" class="btn btn-default btn-block" onclick="SubmitForm(); return false;">Register</button> <!-- SUBMIT -->
+					</form>
+				</div> <!-- END FORM -->
+				<div class="col-sm-1">&nbsp;</div>
+				<div class="col-sm-4 student-list-section">  <!-- LIST -->
+					<br /><br />
+					<table class = "table table-striped" name="thesis-form" id="thesis-form">
+						<caption class="text-info">Thesis entries</caption>
+						<thead>	
+							<tr>
+								<th>Year</th>
+								<th>Title</th>
+								<th>Adviser</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for thesis in entry_list %}
+								<tr>
+									<td>{{thesis.year}}</td>
+									<td>{{thesis.title}}</td>
+									<td>{{thesis.adviser}}</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div> <!-- END LIST -->
+				<div class="col-sm-2">&nbsp;</div>
+			</div>
+		</div>
+		<script type="text/javascript" src='/static/script.js'></script>  <!-- JS SCRIPT -->
+	</body>
+</html>
